@@ -1,14 +1,17 @@
----
-name: HTML Starter
-slug: html-starter-with-analytics
-description: HTML5 template with analytics and advanced routing configuration.
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/html&project-name=html
-relatedTemplates:
-  - nextjs-boilerplate
----
+# TimeArch
 
-# HTML Starter
+Static TimeArch daily tracker, ready for GitHub + Vercel.
 
-This is a starter HTML5 templates which is configured with Vercel Analytics (through a `script` tag), advanced routing with [Vercel Edge Middleware](https://vercel.com/docs/concepts/functions/edge-middleware), as well as some basic styles
+## Deploy on Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/html&project-name=html)
+1. Create a new GitHub repository.
+2. Upload everything inside this folder to the repository root.
+3. Import that repository in Vercel.
+4. Choose **Other** as the framework preset if Vercel asks.
+5. Leave build command and output directory empty.
+
+Vercel will serve `index.html` automatically.
+
+## Single-file deploy
+
+If you want to upload only one file, upload `index.html` to your GitHub repository root. The app will work as a normal static site, but install/offline PWA support needs `manifest.webmanifest`, `sw.js`, and `icon.svg` too.

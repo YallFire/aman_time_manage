@@ -1,96 +1,571 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#111113" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="TimeArch" />
+  <meta name="description" content="Track your daily hours — know where your time goes." />
+  <title>TimeArch — Daily Tracker</title>
+
+  <!-- Vercel/GitHub deploy note: keep this file named index.html at the repo root. -->
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="application-name" content="TimeArch" />
+  <meta property="og:title" content="TimeArch - Daily Tracker" />
+  <meta property="og:description" content="Track your daily hours and know where your time goes." />
+  <meta property="og:type" content="website" />
+
+  <!-- Apple touch icon SVG inline -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' rx='22' fill='%23111113'/><circle cx='48' cy='48' r='28' stroke='%2334d399' stroke-width='4' fill='none'/><line x1='48' y1='48' x2='48' y2='26' stroke='%2334d399' stroke-width='3.5' stroke-linecap='round'/><line x1='48' y1='48' x2='62' y2='54' stroke='%23f1f5f9' stroke-width='3' stroke-linecap='round'/><circle cx='48' cy='48' r='3' fill='%2334d399'/></svg>" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    :root {
+      --bg: #111113; --bg2: #1c1c1e; --bg3: #2c2c2e; --bg4: #3c3c3e;
+      --txt: #f1f5f9; --txt2: #9ca3af; --txt3: #6b7280;
+      --green: #34d399; --blue: #60a5fa; --orange: #fb923c;
+      --purple: #c084fc; --yellow: #fbbf24; --red: #f87171;
+      --teal: #2dd4bf; --slate: #94a3b8;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bot: env(safe-area-inset-bottom, 16px);
+    }
+    html, body { height: 100%; background: var(--bg); color: var(--txt); font-family: -apple-system, 'SF Pro Display', 'Segoe UI', sans-serif; overflow: hidden; }
+    body { display: flex; justify-content: center; }
+    #app { width: 100%; max-width: 430px; height: 100dvh; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { display: none; }
+
+    /* STATUS BAR */
+    #statusBar { display: flex; justify-content: space-between; align-items: center; padding: calc(var(--safe-top) + 6px) 20px 4px; background: var(--bg); flex-shrink: 0; font-size: 11px; color: var(--txt3); font-weight: 500; }
+
+    /* SCREEN */
+    #screen { flex: 1; overflow-y: auto; padding-bottom: 80px; }
+
+    /* PAGE */
+    .page { display: none; animation: fadeIn 0.2s ease; }
+    .page.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* HEADER */
+    .pageHeader { display: flex; justify-content: space-between; align-items: flex-start; padding: 14px 20px 14px; background: linear-gradient(180deg, #1a1a1c 0%, var(--bg) 100%); border-bottom: 1px solid var(--bg3); }
+    .pageHeader h1 { font-size: 26px; font-weight: 800; color: var(--txt); letter-spacing: -0.5px; }
+    .pageHeader p.sub { font-size: 10px; color: var(--txt3); letter-spacing: 3px; margin-bottom: 3px; }
+    input[type=date] { background: var(--bg3); border: 1px solid var(--bg4); border-radius: 10px; color: var(--txt2); padding: 6px 10px; font-size: 11px; font-family: inherit; cursor: pointer; margin-top: 6px; }
+    input[type=date]::-webkit-calendar-picker-indicator { filter: invert(0.5); cursor: pointer; }
+
+    /* SCORE ROW */
+    .scoreRow { display: flex; gap: 8px; padding: 14px 14px 0; }
+    .scoreCard { flex: 1; background: var(--bg2); border-radius: 14px; border: 1px solid; padding: 10px 4px; text-align: center; }
+    .scoreCard .num { font-size: 22px; font-weight: 800; line-height: 1; display: block; }
+    .scoreCard .lbl { font-size: 9px; color: var(--txt3); text-transform: uppercase; letter-spacing: 1px; display: block; margin-top: 3px; }
+
+    /* SECTION HEAD */
+    .secHead { font-size: 10px; color: var(--txt3); letter-spacing: 3px; margin: 14px 0 8px; display: block; }
+
+    /* HOUR LIST */
+    .listWrap { padding: 0 14px; }
+    .hourRow { display: flex; align-items: center; gap: 10px; width: 100%; border: 1px solid; border-radius: 14px; padding: 11px 14px; margin-bottom: 6px; cursor: pointer; text-align: left; background: var(--bg2); transition: transform 0.1s; font-family: inherit; }
+    .hourRow:active { transform: scale(0.97); }
+    .hourRow .hLabel { font-size: 10px; color: var(--txt3); width: 34px; flex-shrink: 0; letter-spacing: 0.5px; }
+    .hourRow .content { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+    .hourRow .actName { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+    .hourRow .actNote { font-size: 10px; color: var(--txt3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; margin-top: 1px; }
+    .hourRow .empty { font-size: 11px; color: var(--bg4); flex: 1; }
+    .catTag { font-size: 9px; padding: 2px 7px; border-radius: 6px; flex-shrink: 0; letter-spacing: 0.5px; }
+
+    /* BIG CARD */
+    .bigCard { background: var(--bg2); border-radius: 20px; margin: 14px 14px 0; padding: 18px; border: 1px solid var(--bg3); }
+    .bigCard .effScore { text-align: center; margin-bottom: 16px; }
+    .bigCard .effScore .lbl { font-size: 11px; color: var(--txt3); letter-spacing: 2px; display: block; margin-bottom: 4px; }
+    .bigCard .effScore .num { font-size: 52px; font-weight: 800; color: var(--green); line-height: 1; }
+    .bigCard .effScore .unit { font-size: 20px; color: var(--txt3); }
+    .bigCard .effScore .date { font-size: 11px; color: var(--txt3); display: block; margin-top: 4px; }
+    .statRow { display: flex; gap: 10px; justify-content: center; }
+    .statItem { text-align: center; }
+    .statItem .n { font-size: 22px; font-weight: 700; }
+    .statItem .l { font-size: 10px; color: var(--txt3); }
+
+    /* CAT CARD */
+    .catCard { border: 1px solid; border-radius: 16px; padding: 14px; margin-bottom: 10px; }
+    .catCard .topRow { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .catCard .info { display: flex; align-items: center; gap: 8px; }
+    .catCard .name { font-size: 13px; font-weight: 600; color: var(--txt); display: block; }
+    .catCard .sub2 { font-size: 10px; color: var(--txt3); display: block; }
+    .catCard .hrs { font-size: 18px; font-weight: 800; }
+    .bar { height: 4px; background: var(--bg3); border-radius: 99px; overflow: hidden; }
+    .barFill { height: 100%; border-radius: 99px; transition: width 0.7s ease; }
+    .pillWrap { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+
+    /* HISTORY */
+    .histCard { display: flex; align-items: flex-start; background: var(--bg2); border: 1px solid; border-radius: 16px; margin: 0 14px 8px; padding: 14px 16px; cursor: pointer; width: calc(100% - 28px); text-align: left; font-family: inherit; transition: transform 0.1s; }
+    .histCard:active { transform: scale(0.97); }
+    .histCard .left { flex: 1; }
+    .histCard .dname { font-size: 14px; font-weight: 700; color: var(--txt); display: block; }
+    .histCard .dsub { font-size: 11px; color: var(--txt3); display: block; margin-top: 2px; }
+    .histCard .dmeta { display: flex; gap: 10px; margin-top: 6px; }
+    .histCard .right { text-align: right; }
+    .histCard .eff { font-size: 22px; font-weight: 800; display: block; }
+    .histCard .efflbl { font-size: 9px; color: var(--txt3); display: block; }
+    .histCard .emojis { display: flex; gap: 2px; margin-top: 4px; justify-content: flex-end; font-size: 12px; }
+
+    .insight { font-size: 12px; margin-bottom: 6px; display: block; }
+    .insight.good { color: var(--green); }
+    .insight.bad { color: var(--red); }
+    .insight.warn { color: var(--yellow); }
+    .insHead { font-size: 11px; color: var(--yellow); letter-spacing: 2px; display: block; margin-bottom: 10px; }
+
+    /* EMPTY */
+    .empty { text-align: center; padding: 60px 20px; color: var(--txt3); font-size: 13px; line-height: 1.8; }
+
+    /* BOTTOM NAV */
+    #nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; display: flex; background: var(--bg2); border-top: 1px solid var(--bg3); padding-bottom: var(--safe-bot); z-index: 50; }
+    .navBtn { flex: 1; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; padding: 10px 0 6px; font-family: inherit; position: relative; transition: color 0.15s; color: var(--txt3); }
+    .navBtn.active { color: var(--green); }
+    .navBtn .icon { font-size: 22px; }
+    .navBtn .nlbl { font-size: 9px; margin-top: 2px; }
+    .navBtn.active .nlbl { font-weight: 700; }
+    .navDot { position: absolute; bottom: 4px; width: 4px; height: 4px; border-radius: 50%; background: var(--green); display: none; }
+    .navBtn.active .navDot { display: block; }
+
+    /* OVERLAY + SHEET */
+    #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 200; display: none; align-items: flex-end; justify-content: center; }
+    #overlay.open { display: flex; }
+    #sheet { background: var(--bg2); border-radius: 24px 24px 0 0; width: 100%; max-width: 430px; padding: 14px 20px calc(var(--safe-bot) + 16px); border: 1px solid var(--bg3); border-bottom: none; animation: sheetUp 0.28s cubic-bezier(.32,1,.23,1); }
+    @keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .sheetHandle { width: 36px; height: 4px; background: var(--bg4); border-radius: 99px; margin: 0 auto 18px; }
+    .sheetTopRow { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .sheetTopRow .sub { font-size: 11px; color: var(--txt3); letter-spacing: 2px; display: block; }
+    .sheetTopRow .title { font-size: 18px; font-weight: 700; color: var(--txt); display: block; }
+    .closeBtn { background: var(--bg3); border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; color: var(--txt2); font-size: 14px; display: flex; align-items: center; justify-content: center; }
+    .catGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .catBtn { border: 1px solid; border-radius: 12px; padding: 10px 4px; cursor: pointer; display: flex; flex-direction: column; align-items: center; font-family: inherit; transition: all 0.12s; background: var(--bg3); border-color: var(--bg4); color: var(--txt3); }
+    .catBtn:active { transform: scale(0.93); }
+    .catBtn .cIcon { font-size: 18px; }
+    .catBtn .cLbl { font-size: 10px; margin-top: 3px; }
+    .fieldLbl { font-size: 10px; color: var(--txt3); letter-spacing: 2px; display: block; margin: 14px 0 8px; }
+    .inp { width: 100%; background: var(--bg3); border: 1px solid var(--bg4); border-radius: 12px; padding: 12px 14px; color: var(--txt); font-size: 13px; font-family: inherit; outline: none; }
+    .inp::placeholder { color: var(--txt3); }
+    .inp:focus { border-color: var(--green); }
+    .btnRow { display: flex; gap: 10px; margin-top: 18px; }
+    .savBtn { flex: 1; background: var(--green); color: #0d1f17; border: none; border-radius: 14px; padding: 14px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; }
+    .savBtn:active { filter: brightness(0.9); }
+    .delBtn { background: rgba(248,113,113,0.13); color: var(--red); border: 1px solid rgba(248,113,113,0.2); border-radius: 14px; padding: 14px 16px; font-size: 16px; cursor: pointer; font-family: inherit; }
+
+    /* TOAST */
+    #toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%); background: var(--bg2); border: 1px solid rgba(52,211,153,0.3); border-radius: 20px; padding: 10px 20px; font-size: 12px; color: var(--green); z-index: 300; white-space: nowrap; box-shadow: 0 4px 20px rgba(0,0,0,0.4); display: none; animation: fadeUp 0.2s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateX(-50%) translateY(8px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+    /* INSTALL BANNER */
+    #installBanner { background: linear-gradient(135deg, #064e3b, #1e3a5f); border: 1px solid rgba(52,211,153,0.3); margin: 14px 14px 0; border-radius: 16px; padding: 14px; display: none; align-items: center; gap: 12px; }
+    #installBanner.show { display: flex; }
+    #installBanner .txt { flex: 1; font-size: 12px; color: var(--txt2); line-height: 1.5; }
+    #installBanner .txt strong { color: var(--green); display: block; margin-bottom: 2px; }
+    #installBtn { background: var(--green); color: #0d1f17; border: none; border-radius: 10px; padding: 8px 14px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; white-space: nowrap; }
+    #dismissBanner { background: none; border: none; color: var(--txt3); font-size: 18px; cursor: pointer; padding: 0 4px; }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <!-- Status Bar -->
+  <div id="statusBar">
+    <span id="clock">12:00</span>
+    <span>⚡ TimeArch</span>
+  </div>
+
+  <!-- Screen -->
+  <div id="screen">
+
+    <!-- TODAY PAGE -->
+    <div id="pageToday" class="page active">
+      <div class="pageHeader">
+        <div>
+          <p class="sub">DAILY LOG</p>
+          <h1 id="todayTitle">Today</h1>
+        </div>
+        <input type="date" id="datePicker" />
+      </div>
+
+      <!-- Install Banner -->
+      <div id="installBanner">
+        <div class="txt"><strong>📲 Add to Home Screen</strong>Install TimeArch as an app — works offline!</div>
+        <button id="installBtn">Install</button>
+        <button id="dismissBanner">✕</button>
+      </div>
+
+      <!-- Score Row -->
+      <div class="scoreRow" id="scoreRow"></div>
+
+      <div class="listWrap">
+        <span class="secHead">HOURLY TIMELINE</span>
+        <div id="hourList"></div>
+      </div>
+    </div>
+
+    <!-- STATS PAGE -->
+    <div id="pageStats" class="page">
+      <div class="pageHeader">
+        <div>
+          <p class="sub">INSIGHTS</p>
+          <h1>Analysis</h1>
+        </div>
+        <input type="date" id="statsDatePicker" />
+      </div>
+      <div id="statsContent"></div>
+    </div>
+
+    <!-- HISTORY PAGE -->
+    <div id="pageHistory" class="page">
+      <div class="pageHeader">
+        <div>
+          <p class="sub">HISTORY</p>
+          <h1>All Days</h1>
+        </div>
+      </div>
+      <div id="historyContent"></div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Nav -->
+  <nav id="nav">
+    <button class="navBtn active" data-tab="Today" onclick="switchTab('Today')">
+      <span class="icon">⏱</span>
+      <span class="nlbl">Today</span>
+      <span class="navDot"></span>
+    </button>
+    <button class="navBtn" data-tab="Stats" onclick="switchTab('Stats')">
+      <span class="icon">📊</span>
+      <span class="nlbl">Stats</span>
+      <span class="navDot"></span>
+    </button>
+    <button class="navBtn" data-tab="History" onclick="switchTab('History')">
+      <span class="icon">📅</span>
+      <span class="nlbl">History</span>
+      <span class="navDot"></span>
+    </button>
+  </nav>
+
+  <!-- Sheet Overlay -->
+  <div id="overlay" onclick="overlayClick(event)">
+    <div id="sheet">
+      <div class="sheetHandle"></div>
+      <div class="sheetTopRow">
+        <div>
+          <span class="sub">LOG HOUR</span>
+          <span class="title" id="sheetTitle">12:00 PM</span>
+        </div>
+        <button class="closeBtn" onclick="closeSheet()">✕</button>
+      </div>
+      <span class="secHead" style="margin-top:0">CATEGORY</span>
+      <div class="catGrid" id="catGrid"></div>
+      <span class="fieldLbl">ACTIVITY</span>
+      <input class="inp" id="actInput" placeholder="What did you do?" />
+      <span class="fieldLbl">NOTE (optional)</span>
+      <input class="inp" id="noteInput" placeholder="Any reflection or detail..." style="color:var(--txt2)" />
+      <div class="btnRow">
+        <button class="savBtn" onclick="saveEntry()">Save Hour</button>
+        <button class="delBtn" id="delBtn" onclick="deleteEntry()" style="display:none">🗑️</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+</div>
+
+<script>
+/* ── Data ── */
+const CATS = [
+  { id:"study",   label:"Study",   emoji:"📚", color:"#34d399", bg:"#064e3b" },
+  { id:"work",    label:"Work",    emoji:"💼", color:"#60a5fa", bg:"#1e3a5f" },
+  { id:"health",  label:"Health",  emoji:"🏃", color:"#fb923c", bg:"#431407" },
+  { id:"social",  label:"Social",  emoji:"🤝", color:"#c084fc", bg:"#3b0764" },
+  { id:"leisure", label:"Leisure", emoji:"🎮", color:"#fbbf24", bg:"#451a03" },
+  { id:"waste",   label:"Wasted",  emoji:"🕳️", color:"#f87171", bg:"#450a0a" },
+  { id:"sleep",   label:"Sleep",   emoji:"😴", color:"#94a3b8", bg:"#0f172a" },
+  { id:"chores",  label:"Chores",  emoji:"🧹", color:"#2dd4bf", bg:"#042f2e" },
+];
+const HOURS = Array.from({length:24},(_,i)=>{
+  const h=i%12===0?12:i%12, ap=i<12?"AM":"PM";
+  return {v:i, short:`${h}${ap}`, long:`${h}:00 ${ap}`};
+});
+
+function todayStr(){ return new Date().toISOString().split("T")[0]; }
+function fmtDate(s){
+  const d=new Date(s+"T00:00:00"), t=new Date(); t.setHours(0,0,0,0);
+  const diff=Math.round((d-t)/86400000);
+  if(diff===0) return "Today";
+  if(diff===-1) return "Yesterday";
+  return d.toLocaleDateString("en-IN",{day:"numeric",month:"short",weekday:"short"});
+}
+function loadEntries(){ try{ return JSON.parse(localStorage.getItem("tarch_v2")||"{}"); }catch{ return {}; } }
+function saveEntries(e){ localStorage.setItem("tarch_v2",JSON.stringify(e)); }
+
+let entries = loadEntries();
+let currentDate = todayStr();
+let statsDate = todayStr();
+let currentTab = "Today";
+let sheetHour = null;
+let selectedCat = "study";
+let toastTimer = null;
+let deferredPrompt = null;
+
+/* ── Clock ── */
+function updateClock(){
+  const t=new Date();
+  document.getElementById("clock").textContent=t.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});
+}
+updateClock(); setInterval(updateClock, 30000);
+
+/* ── Date pickers ── */
+const dp = document.getElementById("datePicker");
+const sdp = document.getElementById("statsDatePicker");
+dp.value = currentDate;
+sdp.value = statsDate;
+dp.addEventListener("change", e=>{ currentDate=e.target.value; renderToday(); });
+sdp.addEventListener("change", e=>{ statsDate=e.target.value; renderStats(); });
+
+/* ── Tab switching ── */
+function switchTab(tab){
+  currentTab = tab;
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".navBtn").forEach(b=>{ b.classList.remove("active"); if(b.dataset.tab===tab) b.classList.add("active"); });
+  document.getElementById(`page${tab}`).classList.add("active");
+  if(tab==="Today") renderToday();
+  if(tab==="Stats") renderStats();
+  if(tab==="History") renderHistory();
+}
+
+/* ── Render Today ── */
+function renderToday(){
+  const day = entries[currentDate]||{};
+  document.getElementById("todayTitle").textContent = fmtDate(currentDate);
+
+  const total = Object.keys(day).length;
+  const prod = Object.values(day).filter(e=>["study","work","health"].includes(e.category)).length;
+  const wasted = Object.values(day).filter(e=>e.category==="waste").length;
+
+  const scoreData = [
+    {n:total, l:"Logged", c:"#60a5fa"},
+    {n:prod, l:"Productive", c:"#34d399"},
+    {n:wasted, l:"Wasted", c:"#f87171"},
+    {n:24-total, l:"Open", c:"#6b7280"},
+  ];
+  document.getElementById("scoreRow").innerHTML = scoreData.map(({n,l,c})=>`
+    <div class="scoreCard" style="border-color:${c}30">
+      <span class="num" style="color:${c}">${n}</span>
+      <span class="lbl">${l}</span>
+    </div>`).join("");
+
+  document.getElementById("hourList").innerHTML = HOURS.map(({v,short,long})=>{
+    const e=day[v], cat=e?CATS.find(c=>c.id===e.category):null;
+    return `<button class="hourRow" onclick="openSheet(${v})"
+      style="background:${e?cat.bg+"cc":"#1c1c1e"};border-color:${e?cat.color+"40":"#2c2c2e"}">
+      <span class="hLabel">${short}</span>
+      ${e?`<div class="content">
+        <span style="font-size:15px">${cat.emoji}</span>
+        <div style="flex:1;min-width:0">
+          <span class="actName" style="color:${cat.color}">${escHtml(e.activity)}</span>
+          ${e.note?`<span class="actNote">${escHtml(e.note)}</span>`:""}
+        </div>
+        <span class="catTag" style="background:${cat.color}22;color:${cat.color}">${cat.label}</span>
+      </div>`:`<span class="empty">Tap to log +</span>`}
+    </button>`;
+  }).join("");
+}
+
+/* ── Render Stats ── */
+function renderStats(){
+  const day = entries[statsDate]||{};
+  const total=Object.keys(day).length;
+  const prod=Object.values(day).filter(e=>["study","work","health"].includes(e.category)).length;
+  const wasted=Object.values(day).filter(e=>e.category==="waste").length;
+  const eff=total>0?Math.round((prod/total)*100):0;
+  const breakdown=CATS.map(c=>({...c,hours:Object.values(day).filter(e=>e.category===c.id).length}))
+    .filter(c=>c.hours>0).sort((a,b)=>b.hours-a.hours);
+
+  let html=`<div class="bigCard">
+    <div class="effScore">
+      <span class="lbl">EFFICIENCY SCORE</span>
+      <div><span class="num">${eff}</span><span class="unit">%</span></div>
+      <span class="date">${fmtDate(statsDate)}</span>
+    </div>
+    <div class="statRow">
+      <div class="statItem"><span class="n" style="color:#60a5fa">${total}h</span><span class="l">Tracked</span></div>
+      <div class="statItem"><span class="n" style="color:#34d399">${prod}h</span><span class="l">Productive</span></div>
+      <div class="statItem"><span class="n" style="color:#f87171">${wasted}h</span><span class="l">Wasted</span></div>
+    </div>
+  </div>`;
+
+  if(breakdown.length===0){
+    html+=`<div class="empty">No data for this day yet.</div>`;
+  } else {
+    html+=`<div class="listWrap"><span class="secHead">CATEGORY BREAKDOWN</span>`;
+    breakdown.forEach(cat=>{
+      const pills=Object.entries(day).filter(([,e])=>e.category===cat.id)
+        .map(([h,e])=>`<span class="catTag" style="background:${cat.color}18;color:${cat.color}">${HOURS[h].long}: ${escHtml(e.activity)}</span>`).join("");
+      html+=`<div class="catCard" style="border-color:${cat.color}30;background:${cat.bg}88">
+        <div class="topRow">
+          <div class="info"><span style="font-size:18px">${cat.emoji}</span>
+            <div><span class="name">${cat.label}</span></div>
+          </div>
+          <span class="hrs" style="color:${cat.color}">${cat.hours}h</span>
+        </div>
+        <div class="bar"><div class="barFill" style="width:${(cat.hours/24)*100}%;background:${cat.color}"></div></div>
+        <div class="pillWrap">${pills}</div>
+      </div>`;
+    });
+    html+=`</div>`;
+
+    html+=`<div class="bigCard" style="margin-top:12px">
+      <span class="insHead">⚡ INSIGHTS</span>
+      ${wasted>3?`<span class="insight bad">🕳️ ${wasted}h wasted — review these slots!</span>`:""}
+      ${prod>=6?`<span class="insight good">🔥 Excellent! ${prod}h of focused work.</span>`:""}
+      ${total<8?`<span class="insight warn">📝 Only ${total}/24 hours tracked. Log more!</span>`:""}
+      ${wasted===0&&total>0?`<span class="insight good">✨ Zero wasted hours — perfect discipline!</span>`:""}
+    </div>`;
+  }
+
+  document.getElementById("statsContent").innerHTML=html;
+}
+
+/* ── Render History ── */
+function renderHistory(){
+  const allDays=Object.keys(entries).filter(d=>Object.keys(entries[d]||{}).length>0).sort((a,b)=>b.localeCompare(a));
+  if(allDays.length===0){
+    document.getElementById("historyContent").innerHTML=`<div class="empty">No history yet.<br/>Start logging your hours!</div>`;
+    return;
+  }
+  let html="<div style='padding-top:14px'>";
+  allDays.forEach(d=>{
+    const de=entries[d]||{};
+    const t=Object.keys(de).length;
+    const p=Object.values(de).filter(e=>["study","work","health"].includes(e.category)).length;
+    const w=Object.values(de).filter(e=>e.category==="waste").length;
+    const eff=t>0?Math.round((p/t)*100):0;
+    const effColor=eff>=60?"#34d399":eff>=30?"#fbbf24":"#f87171";
+    const emojis=CATS.filter(c=>Object.values(de).some(e=>e.category===c.id)).map(c=>c.emoji).join("");
+    html+=`<button class="histCard" style="border-color:${d===currentDate?"#34d399":"#2c2c2e"}"
+      onclick="jumpToDay('${d}')">
+      <div class="left">
+        <span class="dname">${fmtDate(d)}</span>
+        <span class="dsub">${d}</span>
+        <div class="dmeta">
+          <span style="font-size:10px;color:#60a5fa">${t}h tracked</span>
+          <span style="font-size:10px;color:#34d399">${p}h productive</span>
+          ${w>0?`<span style="font-size:10px;color:#f87171">${w}h wasted</span>`:""}
+        </div>
+      </div>
+      <div class="right">
+        <span class="eff" style="color:${effColor}">${eff}%</span>
+        <span class="efflbl">efficiency</span>
+        <div class="emojis">${emojis}</div>
+      </div>
+    </button>`;
+  });
+  html+="</div>";
+  document.getElementById("historyContent").innerHTML=html;
+}
+
+function jumpToDay(d){ currentDate=d; document.getElementById("datePicker").value=d; switchTab("Today"); }
+
+/* ── Sheet ── */
+function buildCatGrid(){
+  document.getElementById("catGrid").innerHTML=CATS.map(c=>`
+    <button class="catBtn" id="cb_${c.id}" onclick="selectCat('${c.id}')">
+      <span class="cIcon">${c.emoji}</span>
+      <span class="cLbl">${c.label}</span>
+    </button>`).join("");
+}
+buildCatGrid();
+
+function selectCat(id){
+  selectedCat=id;
+  CATS.forEach(c=>{
+    const btn=document.getElementById("cb_"+c.id);
+    if(btn){
+      btn.style.background=c.id===id?c.bg:"var(--bg3)";
+      btn.style.borderColor=c.id===id?c.color:"var(--bg4)";
+      btn.style.color=c.id===id?c.color:"var(--txt3)";
+    }
+  });
+}
+
+function openSheet(hour){
+  sheetHour=hour;
+  const day=entries[currentDate]||{};
+  const ex=day[hour];
+  selectedCat=ex?ex.category:"study";
+  document.getElementById("actInput").value=ex?ex.activity:"";
+  document.getElementById("noteInput").value=ex?ex.note||"":"";
+  document.getElementById("sheetTitle").textContent=HOURS[hour].long;
+  document.getElementById("delBtn").style.display=ex?"block":"none";
+  selectCat(selectedCat);
+  document.getElementById("overlay").classList.add("open");
+}
+function closeSheet(){ document.getElementById("overlay").classList.remove("open"); sheetHour=null; }
+function overlayClick(e){ if(e.target===document.getElementById("overlay")) closeSheet(); }
+
+function saveEntry(){
+  const act=document.getElementById("actInput").value.trim();
+  if(!act){ showToast("Enter an activity ✏️"); return; }
+  const note=document.getElementById("noteInput").value.trim();
+  entries[currentDate]=entries[currentDate]||{};
+  entries[currentDate][sheetHour]={category:selectedCat,activity:act,note};
+  saveEntries(entries);
+  closeSheet();
+  renderToday();
+  showToast("Logged! ✅");
+}
+function deleteEntry(){
+  delete (entries[currentDate]||{})[sheetHour];
+  saveEntries(entries);
+  closeSheet();
+  renderToday();
+  showToast("Removed 🗑️");
+}
+
+/* ── Toast ── */
+function showToast(msg){
+  const t=document.getElementById("toast");
+  t.textContent=msg; t.style.display="block";
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>{ t.style.display="none"; },2000);
+}
+
+/* ── Escape HTML ── */
+function escHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+/* ── PWA Install ── */
+window.addEventListener("beforeinstallprompt", e=>{
+  e.preventDefault(); deferredPrompt=e;
+  document.getElementById("installBanner").classList.add("show");
+});
+document.getElementById("installBtn").addEventListener("click", async()=>{
+  if(!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const {outcome}=await deferredPrompt.userChoice;
+  deferredPrompt=null;
+  document.getElementById("installBanner").classList.remove("show");
+  if(outcome==="accepted") showToast("App installed! 🎉");
+});
+document.getElementById("dismissBanner").addEventListener("click",()=>{
+  document.getElementById("installBanner").classList.remove("show");
+});
+
+/* ── Service Worker ── */
+if("serviceWorker" in navigator){
+  window.addEventListener("load", ()=>{
+    navigator.serviceWorker.register("/sw.js").catch(()=>{});
+  });
+}
+
+/* ── Init ── */
+renderToday();
+</script>
+</body>
 </html>

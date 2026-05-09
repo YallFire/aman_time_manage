@@ -1,0 +1,19 @@
+{
+  "name": "TimeArch - Daily Tracker",
+  "short_name": "TimeArch",
+  "description": "Track your daily hours and know where your time goes.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#111113",
+  "theme_color": "#111113",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
